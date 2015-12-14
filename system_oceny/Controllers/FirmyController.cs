@@ -123,5 +123,20 @@ namespace system_oceny.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpPost]
+        public ActionResult Index(string FirmaZnajdz)
+        {
+           var firmy = from i in db.Firmy
+                      select i;
+           //jeśli coś przesłano, to wyszukaj po tym
+           if (!String.IsNullOrEmpty(FirmaZnajdz))
+           {
+                firmy = from i in db.Firmy
+                     where i.Nazwa.Equals(FirmaZnajdz)
+                     select i;
+           }
+
+           return View(firmy.ToList());
+        }
     }
 }
