@@ -215,8 +215,11 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Firmy\Index.cshtml" />
     <Content Include="Views\Firmy\Create.cshtml" />
+    <Content Include="Views\Firmy\Delete.cshtml" />
+    <Content Include="Views\Firmy\Details.cshtml" />
+    <Content Include="Views\Firmy\Edit.cshtml" />
+    <Content Include="Views\Firmy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

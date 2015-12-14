@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using system_oceny.Models;
@@ -9,47 +12,116 @@ namespace system_oceny.Controllers
 {
     public class FirmyController : Controller
     {
-        private FirmaDBCtxt baza = new FirmaDBCtxt();
-        //Stara metoda
-       /* public ActionResult Index()
-        {
-            //tworzymy obiekt klasy Firma
-            Firma obiekt = new Firma();
+        private FirmaDBCtxt db = new FirmaDBCtxt();
 
-            //przypisujemy wartość dla pola ID
-            obiekt.Id = 1;
-            obiekt.Branza = "Spozywcza";
-            obiekt.Nazwa = "Jadłodajnia Martwy Pies";
-            obiekt.Opis = "Najlepsze psie mięso w kraju";
-
-            //zwracamy obiekt klasy Car do widoku
-            return View(obiekt);
-        } */
-
-        // GET: /Firmy/ 
+        // GET: /Firmy2/
         public ActionResult Index()
         {
-            return View(baza.Firmy.ToList());
+            return View(db.Firmy.ToList());
         }
 
-        // GET: /Cars/Create
+        // GET: /Firmy2/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Firma firma = db.Firmy.Find(id);
+            if (firma == null)
+            {
+                return HttpNotFound();
+            }
+            return View(firma);
+        }
+
+        // GET: /Firmy2/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Cars/Create
+        // POST: /Firmy2/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Branza,Nazwa,Opis")] Firma company)
+        public ActionResult Create([Bind(Include="Id,Branza,Nazwa,Opis")] Firma firma)
         {
             if (ModelState.IsValid)
             {
-                baza.Firmy.Add(company);
-                baza.SaveChanges();
+                db.Firmy.Add(firma);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(company);
+
+            return View(firma);
         }
-	}
+
+        // GET: /Firmy2/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Firma firma = db.Firmy.Find(id);
+            if (firma == null)
+            {
+                return HttpNotFound();
+            }
+            return View(firma);
+        }
+
+        // POST: /Firmy2/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include="Id,Branza,Nazwa,Opis")] Firma firma)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(firma).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(firma);
+        }
+
+        // GET: /Firmy2/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Firma firma = db.Firmy.Find(id);
+            if (firma == null)
+            {
+                return HttpNotFound();
+            }
+            return View(firma);
+        }
+
+        // POST: /Firmy2/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Firma firma = db.Firmy.Find(id);
+            db.Firmy.Remove(firma);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
 }
