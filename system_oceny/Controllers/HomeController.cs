@@ -15,14 +15,14 @@ namespace system_oceny.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "System oceny jakości usług";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Autorzy:";
 
             return View();
         }
