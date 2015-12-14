@@ -10,8 +10,7 @@ namespace system_oceny.Controllers
     public class FirmyController : Controller
     {
         private FirmaDBCtxt baza = new FirmaDBCtxt();
-        //Stara metoda//
-        // GET: /Firmy/ 
+        //Stara metoda
        /* public ActionResult Index()
         {
             //tworzymy obiekt klasy Firma
@@ -26,9 +25,31 @@ namespace system_oceny.Controllers
             //zwracamy obiekt klasy Car do widoku
             return View(obiekt);
         } */
+
+        // GET: /Firmy/ 
         public ActionResult Index()
         {
             return View(baza.Firmy.ToList());
+        }
+
+        // GET: /Cars/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: /Cars/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Branza,Nazwa,Opis")] Firma company)
+        {
+            if (ModelState.IsValid)
+            {
+                baza.Firmy.Add(company);
+                baza.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(company);
         }
 	}
 }

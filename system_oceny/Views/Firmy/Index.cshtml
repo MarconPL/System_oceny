@@ -16,10 +16,20 @@
         DZIAŁAJ DZIWKO!!!!!!!!!
         Test gitHuba
         <table>
-            <tr><td>Id</td><td>Model</td></tr>
+            <tr>
+            <td>Id</td>
+            <td>Branza</td>
+            <td>Nazwa</td>
+            <td>Opis</td>
+            </tr>
             @foreach (var wiersz in Model)
             {
-                <tr><td>@wiersz.Id</td><td>@wiersz.Model</td></tr>
+                <tr>
+                <td>@wiersz.Id</td>
+                <td>@wiersz.Branza</td>
+                <td>@wiersz.Nazwa</td>
+                <td>@wiersz.Opis</td>
+                </tr>
             }
         </table>
     </div>

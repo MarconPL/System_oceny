@@ -18,6 +18,11 @@ namespace system_oceny
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                  name: "jakasSensownaNazwa",
+                  url: "{controller}/{action}/{id1}/{id2}",
+                  defaults: new { controller = "Home", action = "Index", id1 = UrlParameter.Optional, id2 = UrlParameter.Optional }
+            );
         }
     }
 }
