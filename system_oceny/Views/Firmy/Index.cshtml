@@ -1,4 +1,5 @@
-﻿@model system_oceny.Models.Firma
+﻿
+@model IEnumerable<system_oceny.Models.Firma>
 @{
     Layout = null;
 }
@@ -14,10 +15,13 @@
     <div>
         DZIAŁAJ DZIWKO!!!!!!!!!
         Test gitHuba
-        <p>Id: @Model.Id</p>
-        <p>Branża: @Model.Branza</p>
-        <p>Nazwa: @Model.Nazwa</p>
-        <p>Opis: @Model.Opis</p>
+        <table>
+            <tr><td>Id</td><td>Model</td></tr>
+            @foreach (var wiersz in Model)
+            {
+                <tr><td>@wiersz.Id</td><td>@wiersz.Model</td></tr>
+            }
+        </table>
     </div>
 </body>
 </html>

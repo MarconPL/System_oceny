@@ -9,9 +9,10 @@ namespace system_oceny.Controllers
 {
     public class FirmyController : Controller
     {
-        //
-        // GET: /Firmy/
-        public ActionResult Index()
+        private FirmaDBCtxt baza = new FirmaDBCtxt();
+        //Stara metoda//
+        // GET: /Firmy/ 
+       /* public ActionResult Index()
         {
             //tworzymy obiekt klasy Firma
             Firma obiekt = new Firma();
@@ -24,6 +25,10 @@ namespace system_oceny.Controllers
 
             //zwracamy obiekt klasy Car do widoku
             return View(obiekt);
+        } */
+        public ActionResult Index()
+        {
+            return View(baza.Firmy.ToList());
         }
 	}
 }
