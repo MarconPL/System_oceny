@@ -35,6 +35,26 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
+        //Powinno się wywoływać po wywołaniu oceny
+        [HttpPost]
+        public ActionResult Details(int? id, string FirmaOcen)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Firma firma = db.Firmy.Find(id);
+            if (firma == null)
+            {
+                return HttpNotFound();
+            }
+            db.Entry(firma).State = EntityState.Modified;  
+            firma.ocena = (firma.ocena*firma.ilosc_ocen+Single.Parse(FirmaOcen))/(firma.ilosc_ocen+1);
+            firma.ilosc_ocen++;
+            db.SaveChanges();
+            return View(firma);
+        }
+
         // GET: /Firmy2/Create
         public ActionResult Create()
         {
@@ -49,6 +69,7 @@ namespace system_oceny.Controllers
         public ActionResult Create([Bind(Include="Id,Branza,Nazwa,Opis,ocena")] Firma firma)
         {
             firma.ocena = 0;
+            firma.ilosc_ocen = 0;
             if (ModelState.IsValid)
             {
                 db.Firmy.Add(firma);
