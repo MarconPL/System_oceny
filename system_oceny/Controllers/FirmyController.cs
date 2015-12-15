@@ -132,7 +132,7 @@ namespace system_oceny.Controllers
            if (!String.IsNullOrEmpty(FirmaZnajdz))
            {
                 firmy = from i in db.Firmy
-                     where i.Nazwa.Equals(FirmaZnajdz)
+                     where i.Nazwa.Contains(FirmaZnajdz)
                      select i;
            }
 
