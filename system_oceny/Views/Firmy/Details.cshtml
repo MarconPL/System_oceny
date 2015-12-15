@@ -37,12 +37,15 @@
     </div>
 
     <div class="col-md-4">
+        <h5>Ocena użytkowników:</h5>
+        <h4>@Html.DisplayFor(model => model.ocena)</h4>
+        <br/>
         <body>
             @using (Html.BeginForm())
             {
                 <div>Wystaw ocenę: </div>
                 <div>@Html.TextBox("FirmaOcen")</div>
-                <input type="submit" value="Oceń" />
+                <input type="submit" value="Ocen" />
             }
         </body>
     </div>

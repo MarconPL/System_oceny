@@ -12,7 +12,7 @@ namespace system_oceny.Models
         public string Branza { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
-        //public int ocena { get; set; } //nie działa na razie
+        public int ocena { get; set; } //nie działa na razie
     }
 
     public class FirmaDBCtxt : DbContext

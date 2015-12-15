@@ -46,8 +46,9 @@ namespace system_oceny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Branza,Nazwa,Opis")] Firma firma)
+        public ActionResult Create([Bind(Include="Id,Branza,Nazwa,Opis,ocena")] Firma firma)
         {
+            firma.ocena = 0;
             if (ModelState.IsValid)
             {
                 db.Firmy.Add(firma);
