@@ -6,36 +6,48 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Firma</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Branza)
-        </dt>
+<div class="row">
+    <div class="col-md-8">
+        <h4>Firma</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Branza)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Nazwa)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Branza)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nazwa)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Branza)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Opis)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nazwa)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Opis)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Opis)
-        </dt>
+        </dl>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Opis)
-        </dd>
-
-    </dl>
+    <div class="col-md-4">
+        <body>
+            @using (Html.BeginForm())
+            {
+                <div>Wystaw ocenę: </div>
+                <div>@Html.TextBox("FirmaOcen")</div>
+                <input type="submit" value="Oceń" />
+            }
+        </body>
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
