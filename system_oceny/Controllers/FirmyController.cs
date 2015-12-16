@@ -14,48 +14,6 @@ namespace system_oceny.Controllers
     {
         private FirmaDBCtxt db = new FirmaDBCtxt();
 
-        /* Zostawiam w ramach ewentualnego powortu
-        // GET: /Firmy/
-        public ActionResult Index()
-        {
-            var firms = from i in db.Firmy
-                       select i; 
-            firms = firms.OrderByDescending(s => s.ocena);
-            return View(firms.ToList());
-        }
-
-        [HttpPost]
-        public ActionResult Index(FirmaSzukaj Model)
-        {
-            var firmy = from i in db.Firmy
-                        select i;
-            //jeśli coś przesłano, to wyszukaj po tym
-            if (Model != null)
-            {
-                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
-                           select i;
-                }
-                else if (Model.BranzaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Branza.Contains(Model.BranzaZnajdz)
-                           select i;
-                }
-                else if (Model.NazwaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Nazwa.Contains(Model.NazwaZnajdz)
-                           select i;
-                }
-                firmy = firmy.OrderByDescending(s => s.ocena);
-            }
-            return View(firmy.ToList());
-        }
-         */
-
         public ActionResult Index(string sortowanie, FirmaSzukaj Model)
         {
             ViewBag.SortByOcena = sortowanie == null ? "Ocena_Malejaco" : "";
@@ -64,6 +22,30 @@ namespace system_oceny.Controllers
             var firmy = from i in db.Firmy
                         select i;
 
+             //Wyszukiwanie
+            if (ModelState.IsValid)
+            {
+                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.BranzaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz)
+                            select i;
+                }
+            }
+
+            //Sortowanie
             switch (sortowanie)
             {
                 case "Nazwa_Malejaco":
@@ -84,29 +66,6 @@ namespace system_oceny.Controllers
                 default:
                     firmy = firmy.OrderByDescending(s => s.ocena);
                     break;
-            }
-
-            //jeśli coś przesłano, to wyszukaj po tym
-            if (Model != null)
-            {
-                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
-                            select i;
-                }
-                else if (Model.BranzaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Branza.Contains(Model.BranzaZnajdz)
-                            select i;
-                }
-                else if (Model.NazwaZnajdz != null)
-                {
-                    firmy = from i in db.Firmy
-                            where i.Nazwa.Contains(Model.NazwaZnajdz)
-                            select i;
-                }
             }
             return View(firmy.ToList());
         }
