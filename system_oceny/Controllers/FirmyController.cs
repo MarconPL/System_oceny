@@ -23,6 +23,37 @@ namespace system_oceny.Controllers
             return View(firms.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(FirmaSzukaj Model)
+        {
+            var firmy = from i in db.Firmy
+                        select i;
+            //jeśli coś przesłano, to wyszukaj po tym
+            if (Model != null)
+            {
+                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
+                           select i;
+                }
+                else if (Model.BranzaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Branza.Contains(Model.BranzaZnajdz)
+                           select i;
+                }
+                else if (Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz)
+                           select i;
+                }
+                firmy = firmy.OrderByDescending(s => s.ocena);
+            }
+            return View(firmy.ToList());
+        }
+
         // GET: /Firmy/Details/X
         public ActionResult Details(int? id)
         {
@@ -145,21 +176,6 @@ namespace system_oceny.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        [HttpPost]
-        public ActionResult Index(string FirmaZnajdz)
-        {
-           var firmy = from i in db.Firmy
-                      select i;
-           firmy = firmy.OrderByDescending(s => s.ocena);
-           //jeśli coś przesłano, to wyszukaj po tym
-           if (!String.IsNullOrEmpty(FirmaZnajdz))
-           {
-                firmy = from i in db.Firmy
-                     where i.Nazwa.Contains(FirmaZnajdz)
-                     select i;
-           }
-           return View(firmy.ToList());
         }
     }
 }

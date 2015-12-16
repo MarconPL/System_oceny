@@ -14,7 +14,9 @@
     @using (Html.BeginForm())
     {
         <div>Firma: </div>
-        <div>@Html.TextBox("FirmaZnajdz")</div>
+        <div>@Html.TextBox("ModelZnajdz")</div>
+        <div>Branza: </div>
+        <div>@Html.TextBox("BranzaZnajdz")</div>
         <input type="submit" value="Szukaj" />
     }
 </body>
@@ -24,7 +26,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Branza)
+            @Html.DisplayNameFor(model => model.Branza) 
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nazwa) 
@@ -33,7 +35,7 @@
             @Html.DisplayNameFor(model => model.Opis)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ocena) 
+            @Html.DisplayNameFor(model => model.ocena)
         </th>
         <th></th>
     </tr>
