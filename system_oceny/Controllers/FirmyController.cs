@@ -14,13 +14,16 @@ namespace system_oceny.Controllers
     {
         private FirmaDBCtxt db = new FirmaDBCtxt();
 
-        // GET: /Firmy2/
+        // GET: /Firmy/
         public ActionResult Index()
         {
-            return View(db.Firmy.ToList());
+            var firms = from i in db.Firmy
+                       select i; 
+            firms = firms.OrderByDescending(s => s.ocena);
+            return View(firms.ToList());
         }
 
-        // GET: /Firmy2/Details/5
+        // GET: /Firmy/Details/X
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -55,13 +58,13 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
-        // GET: /Firmy2/Create
+        // GET: /Firmy/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Firmy2/Create
+        // POST: /Firmy/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -80,7 +83,7 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
-        // GET: /Firmy2/Edit/5
+        // GET: /Firmy/Edit/X
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,9 +98,7 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
-        // POST: /Firmy2/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /Firmy/Edit/X
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Branza,Nazwa,Opis")] Firma firma)
@@ -111,7 +112,7 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
-        // GET: /Firmy2/Delete/5
+        // GET: /Firmy/Delete/X
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,7 +127,7 @@ namespace system_oceny.Controllers
             return View(firma);
         }
 
-        // POST: /Firmy2/Delete/5
+        // POST: /Firmy/Delete/X
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -150,6 +151,7 @@ namespace system_oceny.Controllers
         {
            var firmy = from i in db.Firmy
                       select i;
+           firmy = firmy.OrderByDescending(s => s.ocena);
            //jeśli coś przesłano, to wyszukaj po tym
            if (!String.IsNullOrEmpty(FirmaZnajdz))
            {
@@ -157,7 +159,6 @@ namespace system_oceny.Controllers
                      where i.Nazwa.Contains(FirmaZnajdz)
                      select i;
            }
-
            return View(firmy.ToList());
         }
     }

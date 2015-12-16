@@ -27,10 +27,13 @@
             @Html.DisplayNameFor(model => model.Branza)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nazwa)
+            @Html.DisplayNameFor(model => model.Nazwa) 
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ocena) 
         </th>
         <th></th>
     </tr>
@@ -46,6 +49,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ocena)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
