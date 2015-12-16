@@ -14,6 +14,7 @@ namespace system_oceny.Controllers
     {
         private FirmaDBCtxt db = new FirmaDBCtxt();
 
+        /* Zostawiam w ramach ewentualnego powortu
         // GET: /Firmy/
         public ActionResult Index()
         {
@@ -50,6 +51,62 @@ namespace system_oceny.Controllers
                            select i;
                 }
                 firmy = firmy.OrderByDescending(s => s.ocena);
+            }
+            return View(firmy.ToList());
+        }
+         */
+
+        public ActionResult Index(string sortowanie, FirmaSzukaj Model)
+        {
+            ViewBag.SortByOcena = sortowanie == null ? "Ocena_Malejaco" : "";
+            ViewBag.SortByNazwa = sortowanie == "Nazwa_Malejaco" ? "Nazwa_Rosnaco" : "Nazwa_Malejaco";
+            ViewBag.SortByBranza = sortowanie == "Branza_Malejaco" ? "Branza_Rosnaco" : "Branza_Malejaco";
+            var firmy = from i in db.Firmy
+                        select i;
+
+            switch (sortowanie)
+            {
+                case "Nazwa_Malejaco":
+                    firmy = firmy.OrderByDescending(s => s.Nazwa);
+                    break;
+                case "Nazwa_Rosnaco":
+                    firmy = firmy.OrderBy(s => s.Nazwa);
+                    break;
+                case "Branza_Malejaco":
+                    firmy = firmy.OrderByDescending(s => s.Branza);
+                    break;
+                case "Branza_Rosnaco":
+                    firmy = firmy.OrderBy(s => s.Branza);
+                    break;
+                case "Ocena_Malejaco":
+                    firmy = firmy.OrderBy(s => s.ocena);
+                    break;
+                default:
+                    firmy = firmy.OrderByDescending(s => s.ocena);
+                    break;
+            }
+
+            //jeśli coś przesłano, to wyszukaj po tym
+            if (Model != null)
+            {
+                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.BranzaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz)
+                            select i;
+                }
             }
             return View(firmy.ToList());
         }
