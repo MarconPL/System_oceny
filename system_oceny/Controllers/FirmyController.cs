@@ -16,6 +16,7 @@ namespace system_oceny.Controllers
 
         public ActionResult Index(string sortowanie, FirmaSzukaj Model)
         {
+            ViewBag.SortedBy = sortowanie;
             ViewBag.SortByOcena = sortowanie == null ? "Ocena_Malejaco" : "";
             ViewBag.SortByNazwa = sortowanie == "Nazwa_Malejaco" ? "Nazwa_Rosnaco" : "Nazwa_Malejaco";
             ViewBag.SortByBranza = sortowanie == "Branza_Malejaco" ? "Branza_Rosnaco" : "Branza_Malejaco";
@@ -43,7 +44,10 @@ namespace system_oceny.Controllers
                             where i.Nazwa.Contains(Model.NazwaZnajdz)
                             select i;
                 }
+                ViewBag.BranzaZnajdz = Model.BranzaZnajdz;
+                ViewBag.NazwaZnajdz = Model.NazwaZnajdz;
             }
+
 
             //Sortowanie
             switch (sortowanie)
