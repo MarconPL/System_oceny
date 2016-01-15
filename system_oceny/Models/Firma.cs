@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,7 @@ namespace system_oceny.Models
         public int ilosc_ocen {get;set;}
     }
 
-    public class FirmaDBCtxt : DbContext
+    public class DefaultConnection : DbContext
     {
         public DbSet<Firma> Firmy { get; set; }
     }
