@@ -10,9 +10,15 @@ namespace system_oceny.Models
     public class Tranzakcja
     {
         [Key]
-        public int id { get; set; }
+        public int TranzakcjaId { get; set; }
 
+        public int Id { get; set; }
         public virtual Firma Firma { get; set; }
+
+        public string login { get; set; }
         public virtual Uzytkownik Uzytkownik { get; set; }
+
+        [Display(Name = "Data")]
+        public DateTime data;
     }
 }

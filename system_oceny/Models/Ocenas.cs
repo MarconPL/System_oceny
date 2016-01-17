@@ -16,9 +16,10 @@ namespace system_oceny.Models
     {
         public int ocenaId { get; set; }
         public Nullable<int> Firma_Id { get; set; }
-        public Nullable<int> Uzytkownik_uzytkownikId { get; set; }
+        public string Uzytkownik_login { get; set; }
     
         public virtual Firmas Firmas { get; set; }
+        public virtual Komentarzs Komentarzs { get; set; }
         public virtual Uzytkowniks Uzytkowniks { get; set; }
     }
 }

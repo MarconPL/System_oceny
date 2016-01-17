@@ -16,7 +16,6 @@ namespace system_oceny.Models
     {
         public Firmas()
         {
-            this.Komentarzs = new HashSet<Komentarzs>();
             this.Ocenas = new HashSet<Ocenas>();
             this.Tranzakcjas = new HashSet<Tranzakcjas>();
             this.Zdjecies = new HashSet<Zdjecies>();
@@ -25,17 +24,16 @@ namespace system_oceny.Models
         public int Id { get; set; }
         public string Branza { get; set; }
         public string Nazwa { get; set; }
-        public int nip { get; set; }
+        public int NIP { get; set; }
         public string Opis { get; set; }
         public string email { get; set; }
-        public string telefon { get; set; }
+        public string numer_telefonu { get; set; }
         public string adres { get; set; }
         public string kod_pocztowy { get; set; }
         public string miasto { get; set; }
         public float ocena { get; set; }
         public int ilosc_ocen { get; set; }
     
-        public virtual ICollection<Komentarzs> Komentarzs { get; set; }
         public virtual ICollection<Ocenas> Ocenas { get; set; }
         public virtual ICollection<Tranzakcjas> Tranzakcjas { get; set; }
         public virtual ICollection<Zdjecies> Zdjecies { get; set; }

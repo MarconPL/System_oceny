@@ -14,9 +14,9 @@ namespace system_oceny.Models
     
     public partial class Tranzakcjas
     {
-        public int id { get; set; }
-        public Nullable<int> Firma_Id { get; set; }
-        public Nullable<int> Uzytkownik_uzytkownikId { get; set; }
+        public int TranzakcjaId { get; set; }
+        public int Id { get; set; }
+        public string login { get; set; }
     
         public virtual Firmas Firmas { get; set; }
         public virtual Uzytkowniks Uzytkowniks { get; set; }

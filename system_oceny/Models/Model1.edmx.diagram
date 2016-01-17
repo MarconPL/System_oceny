@@ -4,20 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b66ed63d9a44a7ba293acde3abf94e9" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Firmas" Width="1.5" PointX="0.625" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Komentarzs" Width="2.375" PointX="4.375" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Ocenas" Width="2.375" PointX="4.375" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Tranzakcjas" Width="2.375" PointX="4.375" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Uzytkowniks" Width="1.5" PointX="9.125" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Zdjecies" Width="1.5" PointX="0.5" PointY="8.375" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_dbo_Komentarzs_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
+      <Diagram DiagramId="92cc37200c3e4284863f66a57ab96911" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Firmas" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Komentarzs" Width="1.5" PointX="5.125" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ocenas" Width="1.5" PointX="5.125" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tranzakcjas" Width="1.5" PointX="5.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Uzytkowniks" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Zdjecies" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Firmas_Id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Komentarzs_dbo_Ocenas_ocenaId" ManuallyRouted="true" >
+          <ConnectorPoint PointX="5.9137599106535905" PointY="6.672587890625" />
+          <ConnectorPoint PointX="5.9137599106535905" PointY="8.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_login" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_login" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

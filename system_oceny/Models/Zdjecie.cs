@@ -16,6 +16,7 @@ namespace system_oceny.Models
         public string opis { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string sciezka { get; set; }
 
         public virtual Firma Firma { get; set; }

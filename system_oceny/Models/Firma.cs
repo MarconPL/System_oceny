@@ -8,6 +8,10 @@ using System.Web.Mvc;
 
 namespace system_oceny.Models
 {
+    public enum Brand
+    {
+        Komputerowa, Spożywcza, Handlowa, Usługowa, Samochodwa
+    }
 
     public class Firma
     {
@@ -16,18 +20,15 @@ namespace system_oceny.Models
 
         [Required]
         [Display(Name = "Branża")]
-        [StringLength(50)]
         public string Branza { get; set; }
 
         [Required]
         [Display(Name = "Nazwa")]
         [StringLength(50)]
-        [Remote("ValidateFirmNameRoute", ErrorMessage = "Firma istnieje w bazie")]
         public string Nazwa { get; set; }
 
         [Required]
         [Display(Name = "NIP")]
-        [Remote("ValidateNipNameRoute", ErrorMessage = "Firma istnieje w bazie")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Wpisz numer NIP bez łączników")]
         public int NIP{ get; set; }
 
@@ -37,13 +38,12 @@ namespace system_oceny.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Remote("ValidateMailNameRoute", ErrorMessage = "Firma istnieje w bazie")]
         [Display(Name = "Adres e-mail")]
         public string email { get; set; }
 
         [Display(Name = "Numer telefonu")]
         [DataType(DataType.PhoneNumber)]
-        public string telefon { get; set; }
+        public string numer_telefonu { get; set; }
 
         [Display(Name = "Adres")]
         [StringLength(60)]
@@ -62,7 +62,7 @@ namespace system_oceny.Models
 
         public virtual ICollection<Zdjecie> Zdjecia { get; set; }
         public virtual ICollection<Tranzakcja> Tranzakcje { get; set; }
-        public virtual ICollection<Komentarz> Komentarze { get; set; }
+       // public virtual ICollection<Komentarz> Komentarze { get; set; }
         public virtual ICollection<Ocena> Oceny { get; set; }
 
 

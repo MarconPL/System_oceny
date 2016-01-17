@@ -14,11 +14,8 @@ namespace system_oceny.Models
     
     public partial class Komentarzs
     {
-        public int id { get; set; }
-        public Nullable<int> Firma_Id { get; set; }
-        public Nullable<int> Uzytkownik_uzytkownikId { get; set; }
+        public int ocenaId { get; set; }
     
-        public virtual Firmas Firmas { get; set; }
-        public virtual Uzytkowniks Uzytkowniks { get; set; }
+        public virtual Ocenas Ocenas { get; set; }
     }
 }
