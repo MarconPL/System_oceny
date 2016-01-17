@@ -120,7 +120,7 @@ namespace system_oceny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Branza,Nazwa,Opis,ocena")] Firma firma)
+        public ActionResult Create([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres,numer_telefonu")] Firma firma)
         {
             firma.ocena = 0;
             firma.ilosc_ocen = 0;
@@ -152,7 +152,7 @@ namespace system_oceny.Controllers
         // POST: /Firmy/Edit/X
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Branza,Nazwa,Opis")] Firma firma)
+        public ActionResult Edit([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres, numer_telefonu")] Firma firma)
         {
             if (ModelState.IsValid)
             {

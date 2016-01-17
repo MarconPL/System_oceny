@@ -32,10 +32,58 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.NIP, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NIP)
+                @Html.ValidationMessageFor(model => model.NIP)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Opis, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Opis)
                 @Html.ValidationMessageFor(model => model.Opis)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.numer_telefonu, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numer_telefonu)
+                @Html.ValidationMessageFor(model => model.numer_telefonu)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.adres, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adres)
+                @Html.ValidationMessageFor(model => model.adres)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.kod_pocztowy, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kod_pocztowy)
+                @Html.ValidationMessageFor(model => model.kod_pocztowy)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.miasto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.miasto)
+                @Html.ValidationMessageFor(model => model.miasto)
             </div>
         </div>
 

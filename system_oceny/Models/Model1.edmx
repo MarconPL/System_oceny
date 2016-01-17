@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Firmas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Branza" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nip" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="telefon" Type="nvarchar(max)" />
+          <Property Name="adres" Type="nvarchar" MaxLength="60" />
+          <Property Name="kod_pocztowy" Type="nvarchar(max)" />
+          <Property Name="miasto" Type="nvarchar" MaxLength="30" />
+          <Property Name="ocena" Type="real" Nullable="false" />
+          <Property Name="ilosc_ocen" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Komentarzs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma_Id" Type="int" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="int" />
+        </EntityType>
+        <EntityType Name="Ocenas">
+          <Key>
+            <PropertyRef Name="ocenaId" />
+          </Key>
+          <Property Name="ocenaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma_Id" Type="int" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tranzakcjas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma_Id" Type="int" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="int" />
+        </EntityType>
+        <EntityType Name="Uzytkowniks">
+          <Key>
+            <PropertyRef Name="uzytkownikId" />
+          </Key>
+          <Property Name="uzytkownikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zdjecies">
+          <Key>
+            <PropertyRef Name="zdjecieId" />
+          </Key>
+          <Property Name="zdjecieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opis" Type="nvarchar(max)" />
+          <Property Name="sciezka" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Firma_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_Komentarzs_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Komentarzs" Type="Self.Komentarzs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Komentarzs">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Komentarzs" Type="Self.Komentarzs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Komentarzs">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ocenas_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Ocenas" Type="Self.Ocenas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ocenas">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Ocenas" Type="Self.Ocenas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Ocenas">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Tranzakcjas" Type="Self.Tranzakcjas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tranzakcjas">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Tranzakcjas" Type="Self.Tranzakcjas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Tranzakcjas">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zdjecies_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Zdjecies" Type="Self.Zdjecies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zdjecies">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Firmas" EntityType="Self.Firmas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Komentarzs" EntityType="Self.Komentarzs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ocenas" EntityType="Self.Ocenas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tranzakcjas" EntityType="Self.Tranzakcjas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzytkowniks" EntityType="Self.Uzytkowniks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zdjecies" EntityType="Self.Zdjecies" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Komentarzs_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Komentarzs_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Komentarzs" EntitySet="Komentarzs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Komentarzs" EntitySet="Komentarzs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ocenas_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Ocenas_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Ocenas" EntitySet="Ocenas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Ocenas" EntitySet="Ocenas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Tranzakcjas" EntitySet="Tranzakcjas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Tranzakcjas" EntitySet="Tranzakcjas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Zdjecies" EntitySet="Zdjecies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Firmas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Branza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nip" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="miasto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ocena" Type="Single" Nullable="false" />
+          <Property Name="ilosc_ocen" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Komentarzs" Relationship="Self.FK_dbo_Komentarzs_dbo_Firmas_Firma_Id" FromRole="Firmas" ToRole="Komentarzs" />
+          <NavigationProperty Name="Ocenas" Relationship="Self.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" FromRole="Firmas" ToRole="Ocenas" />
+          <NavigationProperty Name="Tranzakcjas" Relationship="Self.FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id" FromRole="Firmas" ToRole="Tranzakcjas" />
+          <NavigationProperty Name="Zdjecies" Relationship="Self.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" FromRole="Firmas" ToRole="Zdjecies" />
+        </EntityType>
+        <EntityType Name="Komentarzs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma_Id" Type="Int32" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="Int32" />
+          <NavigationProperty Name="Firmas" Relationship="Self.FK_dbo_Komentarzs_dbo_Firmas_Firma_Id" FromRole="Komentarzs" ToRole="Firmas" />
+          <NavigationProperty Name="Uzytkowniks" Relationship="Self.FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Komentarzs" ToRole="Uzytkowniks" />
+        </EntityType>
+        <EntityType Name="Ocenas">
+          <Key>
+            <PropertyRef Name="ocenaId" />
+          </Key>
+          <Property Name="ocenaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma_Id" Type="Int32" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="Int32" />
+          <NavigationProperty Name="Firmas" Relationship="Self.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" FromRole="Ocenas" ToRole="Firmas" />
+          <NavigationProperty Name="Uzytkowniks" Relationship="Self.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Ocenas" ToRole="Uzytkowniks" />
+        </EntityType>
+        <EntityType Name="Tranzakcjas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma_Id" Type="Int32" />
+          <Property Name="Uzytkownik_uzytkownikId" Type="Int32" />
+          <NavigationProperty Name="Firmas" Relationship="Self.FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id" FromRole="Tranzakcjas" ToRole="Firmas" />
+          <NavigationProperty Name="Uzytkowniks" Relationship="Self.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Tranzakcjas" ToRole="Uzytkowniks" />
+        </EntityType>
+        <EntityType Name="Uzytkowniks">
+          <Key>
+            <PropertyRef Name="uzytkownikId" />
+          </Key>
+          <Property Name="uzytkownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Komentarzs" Relationship="Self.FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Uzytkowniks" ToRole="Komentarzs" />
+          <NavigationProperty Name="Ocenas" Relationship="Self.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Uzytkowniks" ToRole="Ocenas" />
+          <NavigationProperty Name="Tranzakcjas" Relationship="Self.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" FromRole="Uzytkowniks" ToRole="Tranzakcjas" />
+        </EntityType>
+        <EntityType Name="Zdjecies">
+          <Key>
+            <PropertyRef Name="zdjecieId" />
+          </Key>
+          <Property Name="zdjecieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sciezka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firma_Id" Type="Int32" />
+          <NavigationProperty Name="Firmas" Relationship="Self.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" FromRole="Zdjecies" ToRole="Firmas" />
+        </EntityType>
+        <Association Name="FK_dbo_Komentarzs_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Komentarzs" Type="Self.Komentarzs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Komentarzs">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ocenas_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Ocenas" Type="Self.Ocenas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ocenas">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Tranzakcjas" Type="Self.Tranzakcjas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tranzakcjas">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Zdjecies_dbo_Firmas_Firma_Id">
+          <End Role="Firmas" Type="Self.Firmas" Multiplicity="0..1" />
+          <End Role="Zdjecies" Type="Self.Zdjecies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zdjecies">
+              <PropertyRef Name="Firma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Komentarzs" Type="Self.Komentarzs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Komentarzs">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Ocenas" Type="Self.Ocenas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Ocenas">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+          <End Role="Uzytkowniks" Type="Self.Uzytkowniks" Multiplicity="0..1" />
+          <End Role="Tranzakcjas" Type="Self.Tranzakcjas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkowniks">
+              <PropertyRef Name="uzytkownikId" />
+            </Principal>
+            <Dependent Role="Tranzakcjas">
+              <PropertyRef Name="Uzytkownik_uzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Firmas" EntityType="Self.Firmas" />
+          <EntitySet Name="Komentarzs" EntityType="Self.Komentarzs" />
+          <EntitySet Name="Ocenas" EntityType="Self.Ocenas" />
+          <EntitySet Name="Tranzakcjas" EntityType="Self.Tranzakcjas" />
+          <EntitySet Name="Uzytkowniks" EntityType="Self.Uzytkowniks" />
+          <EntitySet Name="Zdjecies" EntityType="Self.Zdjecies" />
+          <AssociationSet Name="FK_dbo_Komentarzs_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Komentarzs_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Komentarzs" EntitySet="Komentarzs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ocenas_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Ocenas_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Ocenas" EntitySet="Ocenas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Tranzakcjas_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Tranzakcjas" EntitySet="Tranzakcjas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" Association="Self.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id">
+            <End Role="Firmas" EntitySet="Firmas" />
+            <End Role="Zdjecies" EntitySet="Zdjecies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Komentarzs_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Komentarzs" EntitySet="Komentarzs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Ocenas" EntitySet="Ocenas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId" Association="Self.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_Uzytkownik_uzytkownikId">
+            <End Role="Uzytkowniks" EntitySet="Uzytkowniks" />
+            <End Role="Tranzakcjas" EntitySet="Tranzakcjas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Firmas">
+            <EntityTypeMapping TypeName="Model.Firmas">
+              <MappingFragment StoreEntitySet="Firmas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Branza" ColumnName="Branza" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="nip" ColumnName="nip" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+                <ScalarProperty Name="miasto" ColumnName="miasto" />
+                <ScalarProperty Name="ocena" ColumnName="ocena" />
+                <ScalarProperty Name="ilosc_ocen" ColumnName="ilosc_ocen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komentarzs">
+            <EntityTypeMapping TypeName="Model.Komentarzs">
+              <MappingFragment StoreEntitySet="Komentarzs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Firma_Id" ColumnName="Firma_Id" />
+                <ScalarProperty Name="Uzytkownik_uzytkownikId" ColumnName="Uzytkownik_uzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ocenas">
+            <EntityTypeMapping TypeName="Model.Ocenas">
+              <MappingFragment StoreEntitySet="Ocenas">
+                <ScalarProperty Name="ocenaId" ColumnName="ocenaId" />
+                <ScalarProperty Name="Firma_Id" ColumnName="Firma_Id" />
+                <ScalarProperty Name="Uzytkownik_uzytkownikId" ColumnName="Uzytkownik_uzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tranzakcjas">
+            <EntityTypeMapping TypeName="Model.Tranzakcjas">
+              <MappingFragment StoreEntitySet="Tranzakcjas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Firma_Id" ColumnName="Firma_Id" />
+                <ScalarProperty Name="Uzytkownik_uzytkownikId" ColumnName="Uzytkownik_uzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkowniks">
+            <EntityTypeMapping TypeName="Model.Uzytkowniks">
+              <MappingFragment StoreEntitySet="Uzytkowniks">
+                <ScalarProperty Name="uzytkownikId" ColumnName="uzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zdjecies">
+            <EntityTypeMapping TypeName="Model.Zdjecies">
+              <MappingFragment StoreEntitySet="Zdjecies">
+                <ScalarProperty Name="zdjecieId" ColumnName="zdjecieId" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="sciezka" ColumnName="sciezka" />
+                <ScalarProperty Name="Firma_Id" ColumnName="Firma_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
