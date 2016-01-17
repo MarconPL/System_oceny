@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f799f120c4ec4bd59ef2e831145218a5" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Firmas" Width="1.5" PointX="1" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Komentarzs" Width="1.5" PointX="4.375" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ocenas" Width="1.5" PointX="4.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tranzakcjas" Width="1.5" PointX="4.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Uzytkowniks" Width="1.5" PointX="8.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Zdjecies" Width="1.5" PointX="1.125" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Firmas_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Zdjecies_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Komentarzs_dbo_Ocenas_ocenaId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_login" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Tranzakcjas_dbo_Uzytkowniks_login" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
