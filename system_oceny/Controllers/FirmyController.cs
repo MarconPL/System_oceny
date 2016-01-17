@@ -12,7 +12,7 @@ namespace system_oceny.Controllers
 {
     public class FirmyController : Controller
     {
-        private DefaultConnection db = new DefaultConnection();
+        private FirmaDBCtxt db = new FirmaDBCtxt();
 
         public ActionResult Index(string sortowanie, FirmaSzukaj Model)
         {

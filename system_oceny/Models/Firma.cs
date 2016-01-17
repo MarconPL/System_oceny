@@ -10,7 +10,7 @@ namespace system_oceny.Models
 {
     public enum Brand
     {
-        Komputerowa, Spożywcza, Handlowa, Usługowa, Samochodwa
+        Komputerowa, Spożywcza, Handlowa, Usługowa, Samochodowa
     }
 
     public class Firma
@@ -62,13 +62,10 @@ namespace system_oceny.Models
 
         public virtual ICollection<Zdjecie> Zdjecia { get; set; }
         public virtual ICollection<Tranzakcja> Tranzakcje { get; set; }
-       // public virtual ICollection<Komentarz> Komentarze { get; set; }
         public virtual ICollection<Ocena> Oceny { get; set; }
-
-
     }
 
-    public class DefaultConnection : DbContext
+    public class FirmaDBCtxt : DbContext
     {
         public DbSet<Firma> Firmy { get; set; }
         public DbSet<Ocena> Oceny { get; set; }

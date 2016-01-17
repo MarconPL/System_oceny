@@ -206,7 +206,7 @@
           <Property Name="ocenaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ocenas" Relationship="Self.FK_dbo_Komentarzs_dbo_Ocenas_ocenaId" FromRole="Komentarzs" ToRole="Ocenas" />
           <Property Name="tresc" Type="String" Nullable="false" />
-          <Property Name="data" Type="DateTime" Nullable="false" />
+          <Property Name="data" Nullable="false" Type="DateTime" />
         </EntityType>
         <EntityType Name="Ocenas">
           <Key>
@@ -218,6 +218,9 @@
           <NavigationProperty Name="Firmas" Relationship="Self.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" FromRole="Ocenas" ToRole="Firmas" />
           <NavigationProperty Name="Komentarzs" Relationship="Self.FK_dbo_Komentarzs_dbo_Ocenas_ocenaId" FromRole="Ocenas" ToRole="Komentarzs" />
           <NavigationProperty Name="Uzytkowniks" Relationship="Self.FK_dbo_Ocenas_dbo_Uzytkowniks_Uzytkownik_login" FromRole="Ocenas" ToRole="Uzytkowniks" />
+          <Property Name="ocena_jakosc" Type="String" Nullable="false" />
+          <Property Name="ocena_czas" Type="String" Nullable="false" />
+          <Property Name="ocena_cena" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Tranzakcjas">
           <Key>

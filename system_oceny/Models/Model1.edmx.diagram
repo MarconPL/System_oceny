@@ -6,9 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f799f120c4ec4bd59ef2e831145218a5" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Firmas" Width="1.5" PointX="1" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Komentarzs" Width="1.5" PointX="4.375" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Ocenas" Width="1.5" PointX="4.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Tranzakcjas" Width="1.5" PointX="4.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Komentarzs" Width="1.5" PointX="4.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ocenas" Width="1.5" PointX="4.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tranzakcjas" Width="1.5" PointX="4.5" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Uzytkowniks" Width="1.5" PointX="8.625" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Zdjecies" Width="1.5" PointX="1.125" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_Ocenas_dbo_Firmas_Firma_Id" ManuallyRouted="false" />
