@@ -18,7 +18,7 @@ namespace system_oceny.Models
         public string login { get; set; }
         public virtual Uzytkownik Uzytkownik { get; set; }
 
-        [Display(Name = "Data")]
+        [DataType(DataType.Date)]
         public DateTime data;
     }
 }

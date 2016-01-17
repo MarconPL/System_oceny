@@ -14,13 +14,10 @@ namespace system_oceny.Models
         public int ocenaId { get; set; }
         public virtual Ocena Ocena { get; set; }
 
-        [Required]
         [DataType(DataType.MultilineText)]
-
-        [Display(Name = "Tresc")]
         public string tresc;
 
-        [Display(Name = "Data")]
+        [DataType(DataType.Date)]
         public DateTime data;
     }
 }
