@@ -12,13 +12,13 @@ namespace system_oceny.Models
         [Key]
         public int TranzakcjaId { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime data;
+
         public int Id { get; set; }
         public virtual Firma Firma { get; set; }
 
         public string login { get; set; }
         public virtual Uzytkownik Uzytkownik { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime data;
     }
 }
