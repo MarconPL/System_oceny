@@ -57,6 +57,7 @@ namespace system_oceny.Models
         [StringLength(30)]
         public string miasto { get; set; }
 
+        [Display(Name = "Ocena")]
         public float ocena { get; set; }
         public int ilosc_ocen { get; set; }
 
