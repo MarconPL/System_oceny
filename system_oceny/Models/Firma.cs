@@ -61,7 +61,6 @@ namespace system_oceny.Models
         public int ilosc_ocen { get; set; }
 
         public virtual ICollection<Zdjecie> Zdjecia { get; set; }
-        public virtual ICollection<Tranzakcja> Tranzakcje { get; set; }
         public virtual ICollection<Ocena> Oceny { get; set; }
     }
 

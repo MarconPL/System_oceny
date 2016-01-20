@@ -110,7 +110,8 @@ namespace system_oceny.Controllers
         }
 
         // GET: /Firmy/Create
-        public ActionResult Create()
+        [Authorize]
+       public ActionResult Create()
         {
             return View();
         }
@@ -152,6 +153,7 @@ namespace system_oceny.Controllers
         // POST: /Firmy/Edit/X
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres, numer_telefonu")] Firma firma)
         {
             if (ModelState.IsValid)
