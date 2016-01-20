@@ -202,7 +202,6 @@
     <Compile Include="Models\Ocenas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tranzakcja.cs" />
     <Compile Include="Models\Tranzakcjas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

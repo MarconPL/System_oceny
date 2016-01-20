@@ -30,6 +30,5 @@ namespace system_oceny.Models
 
         public virtual Firma Firma { get; set; }
         public virtual Uzytkownik Uzytkownik { get; set; }
-        public virtual Komentarz Komentarz { get; set; }
     }
 }

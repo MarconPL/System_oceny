@@ -30,7 +30,7 @@ namespace system_oceny.Models
         [Required]
         [Display(Name = "NIP")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Wpisz numer NIP bez łączników")]
-        public int NIP{ get; set; }
+        public long NIP{ get; set; }
 
         [Display(Name = "Opis")]
         [DataType(DataType.MultilineText)]
@@ -70,7 +70,6 @@ namespace system_oceny.Models
         public DbSet<Firma> Firmy { get; set; }
         public DbSet<Ocena> Oceny { get; set; }
         public DbSet<Komentarz> Komentarze { get; set; }
-        public DbSet<Tranzakcja> Tranzakcje { get; set; }
         public DbSet<Zdjecie> Zdjecia { get; set; }
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
     }

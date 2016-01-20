@@ -10,15 +10,14 @@ namespace system_oceny.Models
 {
     public class Komentarz
     {
+        public int komentarzID { get; set; }
         [DataType(DataType.MultilineText)]
         public string tresc;
 
         [DataType(DataType.Date)]
         public DateTime data;
 
-        [Key]
-        [ForeignKey("Ocena")]
-        public int ocenaId { get; set; }
-        public virtual Ocena Ocena { get; set; }
+        public virtual Firma Firma { get; set; }
+        public virtual Uzytkownik User { get; set; }
     }
 }

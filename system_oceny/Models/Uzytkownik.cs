@@ -55,7 +55,7 @@ namespace system_oceny.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        public virtual ICollection<Tranzakcja> Tranzakcje { get; set; }
         public virtual ICollection<Ocena> Oceny { get; set; }
+        public virtual ICollection<Komentarz> Komentarze { get; set; }
     }
 }
