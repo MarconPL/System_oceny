@@ -10,13 +10,23 @@ namespace system_oceny.Models
 {
     public class Komentarz
     {
+        [Key]
         public int komentarzID { get; set; }
+
+        [Display(Name = "Treść")]
         [DataType(DataType.MultilineText)]
-        public string tresc;
+        public string tresc { get; set; }
 
+        [Display(Name = "Data")]
         [DataType(DataType.Date)]
-        public DateTime data;
+        public DateTime data {get;set;}
 
-        public string autor;
+        [Display(Name = "Autor")]
+        public string autor { get; set; }
+
+        [ForeignKey("firma")]
+        public int FirmaId { get; set; }
+
+        public virtual Firma firma{get;set;}
     }
 }

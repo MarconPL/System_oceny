@@ -61,7 +61,7 @@
         <hr />
         @if (!User.Identity.Name.Equals(""))
         {
-            @Html.ActionLink("Dodaj komentarz", "Create", "Comment", new { gameId = Model.Id }, null)
+            @Html.ActionLink("Dodaj komentarz", "Create", "Comment", new { FirmaId = Model.Id, autor = User.Identity.Name }, null)
         }
 
         <p>
@@ -70,9 +70,10 @@
                 <dd>
                     @Html.DisplayFor(modelItem => item.tresc)
                     <br />~@Html.DisplayFor(modelItem => item.autor)
+                    <br /><i>@Html.DisplayFor(modelItem => item.data)</i>
                     @if (User.Identity.Name.Equals(item.autor) || User.Identity.Name.Equals("Moderator"))
                     {
-                        <br />@Html.ActionLink("edit", "Edit", "Comment", new { id = item.komentarzID }, null)
+                        <br />@Html.ActionLink("edit  ", "Edit", "Comment", new { id = item.komentarzID }, null)
                         @Html.ActionLink("delete", "Delete", "Comment", new { id = item.komentarzID }, null)
                     }
                     <br /><br />
