@@ -56,22 +56,52 @@
                 @Html.DisplayFor(model => model.kod_pocztowy) @Html.DisplayFor(model => model.miasto)
             </dd>
         </dl>
+
+        <h4>Komentarze:</h4>
+        <hr />
+        @if (!User.Identity.Name.Equals(""))
+        {
+            @Html.ActionLink("Dodaj komentarz", "Create", "Comment", new { gameId = Model.Id }, null)
+        }
+
+        <p>
+            @foreach (var item in Model.Komentarz)
+            {
+                <dd>
+                    @Html.DisplayFor(modelItem => item.tresc)
+                    <br />~@Html.DisplayFor(modelItem => item.autor)
+                    @if (User.Identity.Name.Equals(item.autor) || User.IsInRole("Moderator"))
+                    {
+                        <br />@Html.ActionLink("edit", "Edit", "Comment", new { id = item.komentarzID }, null)
+                    }
+                    <br /><br />
+                </dd>
+            }
+        </p>
+
     </div>
 
     <div class="col-md-4">
-        <h5>Ocena użytkowników:</h5>
+        <h4>Ocena użytkowników:</h4>
+        <hr />
         <b><h4>@Html.DisplayFor(model => model.ocena)</h4></b> na podstawie @Html.DisplayFor(model => model.ilosc_ocen) Ocen
-        <br/>
-        <body>
-            @using (Html.BeginForm())
-            {
-                <div>Wystaw ocenę: </div>
-                <div>@Html.TextBox("FirmaOcen")</div>
-                <input type="submit" value="Ocen" />
-            }
-        </body>
+        <br />
+        @if (!User.Identity.Name.Equals(""))
+        {
+            <body>
+                @using (Html.BeginForm())
+                {
+                    <div>Wystaw ocenę: </div>
+                    <div>@Html.TextBox("FirmaOcen")</div>
+                    <input type="submit" value="Ocen" />
+                }
+            </body>
+        }
     </div>
+
 </div>
+
+
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

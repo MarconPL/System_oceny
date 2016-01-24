@@ -6,9 +6,12 @@
 
 <h2>Baza Firm</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (!User.Identity.Name.Equals(""))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 <body>
     @using (Html.BeginForm())
@@ -58,9 +61,13 @@
                 @Html.DisplayFor(modelItem => item.ocena)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @if (!User.Identity.Name.Equals(""))
+                {
+                    @Html.ActionLink("Edit  ", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Delete  ", "Delete", new { id = item.Id })
+                }  
+                @Html.ActionLink("Details", "Details", new { id = item.Id })  
+                
             </td>
         </tr>
     }

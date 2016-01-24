@@ -63,6 +63,7 @@ namespace system_oceny.Models
 
         public virtual ICollection<Zdjecie> Zdjecia { get; set; }
         public virtual ICollection<Ocena> Oceny { get; set; }
+        public virtual ICollection<Komentarz> Komentarz { get; set; }
     }
 
     public class FirmaDBCtxt : DbContext
@@ -71,6 +72,6 @@ namespace system_oceny.Models
         public DbSet<Ocena> Oceny { get; set; }
         public DbSet<Komentarz> Komentarze { get; set; }
         public DbSet<Zdjecie> Zdjecia { get; set; }
-        public DbSet<Uzytkownik> Uzytkownicy { get; set; }
+        //public DbSet<Uzytkownik> Uzytkownicy { get; set; }
     }
 }

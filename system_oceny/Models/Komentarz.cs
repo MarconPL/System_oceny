@@ -17,7 +17,6 @@ namespace system_oceny.Models
         [DataType(DataType.Date)]
         public DateTime data;
 
-        public virtual Firma Firma { get; set; }
-        public virtual Uzytkownik User { get; set; }
+        public string autor;
     }
 }

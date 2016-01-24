@@ -15,6 +15,7 @@ namespace system_oceny.Models
 
     public class Uzytkownik
     {
+        /*
         [Key]
         [Required]
         [Display(Name = "Login")]
@@ -54,8 +55,9 @@ namespace system_oceny.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+         * */
 
-        //public virtual ICollection<Ocena> Oceny { get; set; }
-       // public virtual ICollection<Komentarz> Komentarze { get; set; }
+        public virtual ICollection<Ocena> Oceny { get; set; }
+        public virtual ICollection<Komentarz> Komentarze { get; set; }
     }
 }

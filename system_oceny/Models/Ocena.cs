@@ -29,6 +29,6 @@ namespace system_oceny.Models
         public int ocena_cena;
 
         public virtual Firma Firma { get; set; }
-        public virtual Uzytkownik Uzytkownik { get; set; }
+       // public virtual Uzytkownik Uzytkownik { get; set; }
     }
 }
