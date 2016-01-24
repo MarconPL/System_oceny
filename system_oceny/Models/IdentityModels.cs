@@ -10,6 +10,14 @@ namespace system_oceny.Models
         [Display(Name = "Adres e-mail")]
         public string email { get; set; }
 
+        [Display(Name = "Imię")]
+        [StringLength(20)]
+        public string imie { get; set; }
+
+        [Display(Name = "Imię")]
+        [StringLength(20)]
+        public string Nazwisko { get; set; }
+
         [Display(Name = "Numer telefonu")]
         [DataType(DataType.PhoneNumber)]
         public string numer_telefonu { get; set; }

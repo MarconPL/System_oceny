@@ -26,10 +26,28 @@ namespace system_oceny.Controllers
              //Wyszukiwanie
             if (ModelState.IsValid)
             {
-                if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
+                if (Model.MiastoZnajdz != null && Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz) && i.miasto.Contains(Model.MiastoZnajdz)
+                            select i;
+                }
+                else if (Model.BranzaZnajdz != null && Model.NazwaZnajdz != null)
                 {
                     firmy = from i in db.Firmy
                             where i.Nazwa.Contains(Model.NazwaZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.BranzaZnajdz != null && Model.MiastoZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.miasto.Contains(Model.MiastoZnajdz) && i.Branza.Contains(Model.BranzaZnajdz)
+                            select i;
+                }
+                else if (Model.MiastoZnajdz != null && Model.NazwaZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.Nazwa.Contains(Model.NazwaZnajdz) && i.miasto.Contains(Model.MiastoZnajdz)
                             select i;
                 }
                 else if (Model.BranzaZnajdz != null)
@@ -44,8 +62,15 @@ namespace system_oceny.Controllers
                             where i.Nazwa.Contains(Model.NazwaZnajdz)
                             select i;
                 }
+                else if (Model.MiastoZnajdz != null)
+                {
+                    firmy = from i in db.Firmy
+                            where i.miasto.Contains(Model.MiastoZnajdz)
+                            select i;
+                }
                 ViewBag.BranzaZnajdz = Model.BranzaZnajdz;
                 ViewBag.NazwaZnajdz = Model.NazwaZnajdz;
+                ViewBag.MiastoZnajdz = Model.MiastoZnajdz;
             }
 
 

@@ -9,5 +9,6 @@ namespace system_oceny.Models
     {
         public string NazwaZnajdz { get; set; }
         public string BranzaZnajdz { get; set; }
+        public string MiastoZnajdz { get; set; }
     }
 }
