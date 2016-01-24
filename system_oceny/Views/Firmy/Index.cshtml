@@ -6,7 +6,7 @@
 
 <h2>Baza Firm</h2>
 
-@if (!User.Identity.Name.Equals(""))
+@if (User.Identity.Name.Equals("Moderator"))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -61,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.ocena)
             </td>
             <td>
-                @if (!User.Identity.Name.Equals(""))
+                @if (User.Identity.Name.Equals("Moderator"))
                 {
                     @Html.ActionLink("Edit  ", "Edit", new { id = item.Id })
                     @Html.ActionLink("Delete  ", "Delete", new { id = item.Id })

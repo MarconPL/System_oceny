@@ -70,9 +70,10 @@
                 <dd>
                     @Html.DisplayFor(modelItem => item.tresc)
                     <br />~@Html.DisplayFor(modelItem => item.autor)
-                    @if (User.Identity.Name.Equals(item.autor) || User.IsInRole("Moderator"))
+                    @if (User.Identity.Name.Equals(item.autor) || User.Identity.Name.Equals("Moderator"))
                     {
                         <br />@Html.ActionLink("edit", "Edit", "Comment", new { id = item.komentarzID }, null)
+                        @Html.ActionLink("delete", "Delete", "Comment", new { id = item.komentarzID }, null)
                     }
                     <br /><br />
                 </dd>
