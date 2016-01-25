@@ -86,18 +86,47 @@
     <div class="col-md-4">
         <h4>Ocena użytkowników:</h4>
         <hr />
-        <b><h4>@Html.DisplayFor(model => model.ocena)</h4></b> na podstawie @Html.DisplayFor(model => model.ilosc_ocen) Ocen
+        <b>Ocena: @Html.DisplayFor(model => model.ocena)</b> 
+        <br/>Jakość: @Html.DisplayFor(model => model.ocena_j)
+        <br /> Cena: @Html.DisplayFor(model => model.ocena_cz)
+        <br />Czas: @Html.DisplayFor(model => model.ocena_ce)
+        <br />na podstawie @Html.DisplayFor(model => model.ilosc_ocen) Ocen
         <br />
+        
+        <br />
+        <b>Twoja ocena: </b>
         @if (!User.Identity.Name.Equals(""))
         {
-            <body>
-                @using (Html.BeginForm())
+            int existingRate = 0;
+            foreach (var item in Model.Oceny)
+            {
+                if (item.login == User.Identity.Name)
                 {
-                    <div>Wystaw ocenę: </div>
-                    <div>@Html.TextBox("FirmaOcen")</div>
-                    <input type="submit" value="Ocen" />
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.ocenaG)
+                    </dd>
+                    existingRate = item.ocenaId;
                 }
-            </body>
+            }
+            if (existingRate > 0)
+            {
+                <dd>
+                    @Html.ActionLink("edytuj ocenę", "Edit", "Ocena", new { id = existingRate }, null)
+                </dd>
+            }
+            else if (existingRate == 0 && !User.Identity.Name.Equals(""))
+            {
+                <dd>
+                    <div>Jeszcze nie oceniłeś tej firmy</div>
+                    @Html.ActionLink("dodaj ocenę", "Create", "Ocena", new { FirmaId = Model.Id, login = User.Identity.Name }, null)
+                </dd>
+            }
+        }
+        else
+        {
+            <dd>
+                @Html.ActionLink("Zaloguj się", "Login", "Account", null, null)
+            </dd>
         }
     </div>
 
@@ -106,6 +135,6 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Wróć do listy", "Index")
 </p>

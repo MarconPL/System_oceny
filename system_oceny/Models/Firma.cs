@@ -29,7 +29,7 @@ namespace system_oceny.Models
 
         [Required]
         [Display(Name = "NIP")]
-        [RegularExpression(@"\d{10}", ErrorMessage = "Wpisz numer NIP bez łączników")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "Wpisz 10 - cyfrowy numer NIP bez łączników")]
         public long NIP{ get; set; }
 
         [Display(Name = "Opis")]
@@ -59,6 +59,9 @@ namespace system_oceny.Models
 
         [Display(Name = "Ocena")]
         public float ocena { get; set; }
+        public float ocena_cz { get; set; }
+        public float ocena_j { get; set; }
+        public float ocena_ce { get; set; }
         public int ilosc_ocen { get; set; }
 
         public virtual ICollection<Zdjecie> Zdjecia { get; set; }

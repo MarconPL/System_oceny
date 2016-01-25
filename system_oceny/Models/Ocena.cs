@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -14,21 +15,29 @@ namespace system_oceny.Models
 
         [Required]
         [Range(1, 10)]
-        public int ocena;
+        [Display(Name = "Ocena Główna")]
+        public int ocenaG { get; set; }
 
+        [Required]
         [Display(Name = "Ocena - Czas")]
         [Range(1, 10)]
-        public int ocena_czas;
+        public int ocena_czas { get; set; }
 
+        [Required]
         [Display(Name = "Ocena - Jakość")]
         [Range(1, 10)]
-        public int ocena_jakosc;
+        public int ocena_jakosc { get; set; }
 
+        [Required]
         [Display(Name = "Ocena - Cena")]
         [Range(1, 10)]
-        public int ocena_cena;
+        public int ocena_cena { get; set; }
 
-        public virtual Firma Firma { get; set; }
+        public string login { get; set; }
+
+        [ForeignKey("firma")]
+        public int FirmaId { get; set; }
+        public virtual Firma firma { get; set; }
        // public virtual Uzytkownik Uzytkownik { get; set; }
     }
 }

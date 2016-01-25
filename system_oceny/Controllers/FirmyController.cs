@@ -149,6 +149,9 @@ namespace system_oceny.Controllers
         public ActionResult Create([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres,numer_telefonu")] Firma firma)
         {
             firma.ocena = 0;
+            firma.ocena_cz = 0;
+            firma.ocena_ce = 0;
+            firma.ocena_j = 0;
             firma.ilosc_ocen = 0;
             if (ModelState.IsValid)
             {
@@ -179,7 +182,7 @@ namespace system_oceny.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres, numer_telefonu")] Firma firma)
+        public ActionResult Edit([Bind(Include = "Id,Branza,Nazwa,Opis,NIP, email, miasto, kod_pocztowy, adres, numer_telefonu, ocena, ocena_cz, ocena_j, ocena_ce")] Firma firma)
         {
             if (ModelState.IsValid)
             {
