@@ -1,20 +1,23 @@
 ﻿@model system_oceny.Models.Komentarz
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Stwórz</h2>
+<h2>Edytuj</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Komentarz</h4>
+        <h4>Firma</h4>
         <hr />
         @Html.ValidationSummary(true)
-
+        @Html.HiddenFor(model => model.komentarzID)
+        @Html.HiddenFor(model => model.FirmaId)
+        @Html.HiddenFor(model => model.data)
+        @Html.HiddenFor(model => model.autor)
 
         <div class="form-group">
             @Html.LabelFor(model => model.tresc, new { @class = "control-label col-md-2" })
@@ -26,8 +29,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Stwórz" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
+<div>
+    @Html.ActionLink("Wróć", "Details", "Firmy", new { id = Model.FirmaId }, null)
+</div>
