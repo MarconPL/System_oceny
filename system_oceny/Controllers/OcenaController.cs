@@ -28,10 +28,9 @@ namespace system_oceny.Controllers
             {
                 db.Oceny.Add(ocena);
                 db.SaveChanges();
-
+                ranking(ocena.FirmaId);
                 return RedirectToAction("Details", "Firmy", new { id = ocena.FirmaId });
             }
-
             return View(ocena);
         }
 
@@ -60,9 +59,39 @@ namespace system_oceny.Controllers
             {
                 db.Entry(ocena).State = EntityState.Modified;
                 db.SaveChanges();
+                ranking(ocena.FirmaId);
                 return RedirectToAction("Details", "Firmy", new { id = ocena.FirmaId });
             }
             return View(ocena);
+        }
+
+        //Statystyki firmy upgrade
+        private void ranking(int id)
+        {
+            Firma firma = db.Firmy.Find(id);
+            db.Entry(firma).State = EntityState.Modified;
+            firma.ilosc_ocen = 0;
+            firma.ocena = 0;
+            firma.ocena_ce = 0;
+            firma.ocena_cz = 0;
+            firma.ocena_j = 0;
+            foreach (Ocena ocena in db.Oceny)
+            {
+                if (ocena.FirmaId == id)
+                {
+                    firma.ocena += ocena.ocenaG;
+                    firma.ocena_ce += ocena.ocena_cena;
+                    firma.ocena_cz += ocena.ocena_czas;
+                    firma.ocena_j += ocena.ocena_jakosc;
+                    firma.ilosc_ocen++;
+                }
+            }
+
+            firma.ocena /= firma.ilosc_ocen;
+            firma.ocena_ce /= firma.ilosc_ocen;
+            firma.ocena_cz /= firma.ilosc_ocen;
+            firma.ocena_j /= firma.ilosc_ocen;
+            db.SaveChanges();
         }
 	}
 }
