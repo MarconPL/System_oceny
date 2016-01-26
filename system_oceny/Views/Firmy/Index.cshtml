@@ -16,10 +16,10 @@
 <body>
     @using (Html.BeginForm())
     {
+        <div>Branza: </div>
+        <div>@Html.DropDownList("BranzaZnajdz", new SelectList(new[] { null, "Komputerowa", "Spożywcza", "Handlowa", "Usługowa", "Samochodowa", "Inna" }), htmlAttributes: new { @class = "form-control-inOneLine" })</div>
         <div>Firma: </div>
         <div>@Html.TextBox("NazwaZnajdz")</div>
-        <div>Branza: </div>
-        <div>@Html.TextBox("BranzaZnajdz")</div>
         <div>Miasto: </div>
         <div>@Html.TextBox("MiastoZnajdz")</div>
         <input type="submit" value="Szukaj" />
