@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\FirmyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\OcenaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,8 @@
     <Content Include="Views\Comment\Delete.cshtml" />
     <Content Include="Views\Ocena\Edit.cshtml" />
     <Content Include="Views\Ocena\Create.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\Image\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

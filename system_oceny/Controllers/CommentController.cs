@@ -15,7 +15,6 @@ namespace system_oceny.Controllers
         //GET:
         public ActionResult Create()
         {
-            //ViewBag.BranzaZnajdz = Model.BranzaZnajdz;
             return View();
         }
 

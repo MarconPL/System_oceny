@@ -57,6 +57,10 @@
             </dd>
         </dl>
 
+        <h4>Galeria:</h4>
+            @Html.ActionLink("Przeglądaj galerię", "Index", "Image", new { id = Model.Id }, null)
+            @Html.ActionLink("Dodaj zdjęcie", "Create", "Image", new { FirmaId = Model.Id}, null)
+        
         <h4>Komentarze:</h4>
         <hr />
         @if (!User.Identity.Name.Equals(""))

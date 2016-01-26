@@ -1,0 +1,25 @@
+﻿@model IEnumerable<system_oceny.Models.Zdjecie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Galeria</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <table cellpadding="10" cellspacing="10" width="600">
+        @foreach (var item in Model)
+        {
+            <img src="/Images/@item.Image" width="240" height="240" class="imageclass" />
+        }
+
+    </table>
+    
+ <div>
+     <a href="javascript:history.back()">Go Back</a>
+</div>
+}
