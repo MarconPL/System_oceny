@@ -111,7 +111,6 @@ namespace system_oceny.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FirmaId = id;
             return View(firma);
         }
 

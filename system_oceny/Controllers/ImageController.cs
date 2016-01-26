@@ -19,6 +19,7 @@ namespace system_oceny.Controllers
                     where i.FirmaId==id
                     select i;
 
+        ViewBag.FirmaId = id;
         return View(zdjecia.ToList());
         }
 

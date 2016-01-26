@@ -3,4 +3,46 @@
 }
 
 <br />
-Strona główna. Na razie pusto.
+<h2>System Oceny Jakości Usług</h2>
+Witaj w Systemie Oceny Jakości Usług.
+Nasz portal powstał w celu wyłonienia najlepszych firm usługowych w danych sektorach gospodarki, tak abyś mógł wybierac najlepsze mozliwe usługi.
+Nie zwlekaj. Załóż konto i pomóz nam tworzyć największy portal będący plaftormą do wymieniania się inforamcjami na temat przedsiebiorstw.
+
+<div style="float:right; width:30%; padding-left: 10px; ">
+    <div>
+        <br />
+        <h3>Top 5!</h3>
+        @{ int u = 0; }
+        <table>
+            @foreach (var item in @ViewBag.najlepsze)
+            {
+                u++;
+                <tr>
+                    <td>
+                        <b>  @u . </b>
+                        @Html.ActionLink((string)item.Nazwa, "/Details/" + (int)item.Id, "Firma")
+                    </td>
+                    <td style="padding-left: 20%;">@item.ocena</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div>
+    <br />
+    <h3>Ostatnie komentarze</h3>
+    @{
+
+        foreach (var item in @ViewBag.najnowsze)
+        {
+            <b>Na Temat: @item.firma.Nazwa</b>
+            <br />
+            @item.tresc
+            <br/>
+            <i>~@item.autor</i>
+            <br /><br />
+        }
+    }
+</div>
+
