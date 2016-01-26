@@ -1,0 +1,32 @@
+﻿@model system_oceny.Models.Zdjecie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <h4>Zdjecie</h4>
+        <hr />
+        <img src="/Images/@Model.Image" height="600" class="imageclass" />
+        <br /><br />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.opis)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.opis)
+            </dd>
+    </div>
+</div>
+
+<p>
+    @if (User.Identity.Name.Equals("Moderator"))
+    {
+        @Html.ActionLink("Skasuj", "Delete", new { id = Model.zdjecieId })
+        <br />
+    }
+    @Html.ActionLink("Wróć do galerii", "Index", new { id = Model.FirmaId })
+</p>

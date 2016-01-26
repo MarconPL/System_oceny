@@ -14,13 +14,20 @@
     <table cellpadding="10" cellspacing="10" width="600">
         @foreach (var item in Model)
         {
+            <a href='@Url.Action("Details", "Image", new { id = item.zdjecieId }, null)'>
             <img src="/Images/@item.Image" width="240" height="240" class="imageclass" />
+            </a>
         }
 
     </table>
-
-    @Html.ActionLink("Dodaj zdjęcie", "Create", "Image", new { FirmaId = @ViewBag.FirmaId }, null)
+    <br/><br/>
+    if (!User.Identity.Name.Equals(""))
+    {
+        @Html.ActionLink("Dodaj zdjęcie", "Create", "Image", new { FirmaId = @ViewBag.FirmaId }, null)
+    }
+    
  <div>
+     <br />
      <a href="javascript:history.back()">Wróć</a>
 </div>
 }

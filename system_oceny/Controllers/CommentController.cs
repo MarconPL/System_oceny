@@ -55,7 +55,7 @@ namespace system_oceny.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "komentarzID, tresc, data, autor, FirmaId")] Komentarz komentarz)
         {
-           // komentarz.data = DateTime.Today;
+            // komentarz.data = DateTime.Today;
             if (ModelState.IsValid)
             {
                 db.Entry(komentarz).State = EntityState.Modified;
@@ -85,10 +85,10 @@ namespace system_oceny.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Komentarz komentarz= db.Komentarze.Find(id);
+            Komentarz komentarz = db.Komentarze.Find(id);
             db.Komentarze.Remove(komentarz);
             db.SaveChanges();
             return RedirectToAction("Details", "Firmy", new { id = komentarz.FirmaId });
         }
-	}
+    }
 }

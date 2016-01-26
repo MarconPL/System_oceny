@@ -1,0 +1,20 @@
+﻿@model system_oceny.Models.Zdjecie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Usuń</h2>
+
+<h3>Czy napewno chcesz usunąć to zdjecie?</h3>
+<div>
+    <img src="/Images/@Model.Image" height="300" class="imageclass" />
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Details", "Image", new { id = Model.FirmaId }, null)
+        </div>
+    }
+</div>

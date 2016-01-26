@@ -20,6 +20,9 @@ namespace system_oceny.Controllers
             ViewBag.SortByOcena = sortowanie == null ? "Ocena_Malejaco" : "";
             ViewBag.SortByNazwa = sortowanie == "Nazwa_Malejaco" ? "Nazwa_Rosnaco" : "Nazwa_Malejaco";
             ViewBag.SortByBranza = sortowanie == "Branza_Malejaco" ? "Branza_Rosnaco" : "Branza_Malejaco";
+            ViewBag.SortByOcenaJ = sortowanie == "OcenaJ_Malejaco" ? "OcenaJ_Rosnaco" : "OcenaJ_Malejaco";
+            ViewBag.SortByOcenaCz = sortowanie == "OcenaCz_Malejaco" ? "OcenaCz_Rosnaco" : "OcenaCz_Malejaco";
+            ViewBag.SortByOcenaCe = sortowanie == "OcenaCe_Malejaco" ? "OcenaCe_Rosnaco" : "OcenaCe_Malejaco";
             var firmy = from i in db.Firmy
                         select i;
 
@@ -91,6 +94,24 @@ namespace system_oceny.Controllers
                     break;
                 case "Ocena_Malejaco":
                     firmy = firmy.OrderBy(s => s.ocena);
+                    break;
+                case "OcenaJ_Malejaco":
+                    firmy = firmy.OrderBy(s => s.ocena_j);
+                    break;
+                case "OcenaJ_Rosnaco":
+                    firmy = firmy.OrderByDescending(s => s.ocena_j);
+                    break;
+                case "OcenaCe_Malejaco":
+                    firmy = firmy.OrderBy(s => s.ocena_ce);
+                    break;
+                case "OcenaCe_Rosnaco":
+                    firmy = firmy.OrderByDescending(s => s.ocena_ce);
+                    break;
+                case "OcenaCz_Malejaco":
+                    firmy = firmy.OrderBy(s => s.ocena_cz);
+                    break;
+                case "OcenaCz_Rosnaco":
+                    firmy = firmy.OrderByDescending(s => s.ocena_cz);
                     break;
                 default:
                     firmy = firmy.OrderByDescending(s => s.ocena);

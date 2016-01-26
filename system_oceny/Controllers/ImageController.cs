@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using system_oceny.Models;
@@ -50,5 +51,44 @@ namespace system_oceny.Controllers
             }
             return View(zdjecie);
         }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Zdjecie zdjecie = db.Zdjecia.Find(id);
+            if (zdjecie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(zdjecie);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Zdjecie zdjecie = db.Zdjecia.Find(id);
+            if (zdjecie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(zdjecie);
+        }
+
+        // POST: /Firmy/Delete/X
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Zdjecie zdjecie = db.Zdjecia.Find(id);
+            db.Zdjecia.Remove(zdjecie);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Image", new { id = zdjecie.FirmaId });
+        }
+
 	}
 }

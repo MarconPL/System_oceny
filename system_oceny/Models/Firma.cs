@@ -59,8 +59,11 @@ namespace system_oceny.Models
 
         [Display(Name = "Ocena")]
         public float ocena { get; set; }
+        [Display(Name = "Czas")]
         public float ocena_cz { get; set; }
+        [Display(Name = "Jakość")]
         public float ocena_j { get; set; }
+        [Display(Name = "Cena")]
         public float ocena_ce { get; set; }
         public int ilosc_ocen { get; set; }
 
